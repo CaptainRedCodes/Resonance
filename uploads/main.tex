@@ -1,0 +1,131 @@
+\documentclass[10pt, letterpaper]{article}
+% Packages
+\usepackage[
+    ignoreheadfoot,
+    top=2cm,
+    bottom=2cm,
+    left=2cm,
+    right=2cm,
+    footskip=1cm
+]{geometry}
+\usepackage{titlesec}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{fontawesome5}
+\usepackage{amsmath}
+\usepackage{charter}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{hyperref}
+
+% Settings
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\columnsep}{0.15cm}
+\pagenumbering{gobble}
+\titleformat{\section}{\bfseries\large}{}{0pt}{}[\vspace{1pt}\titlerule]
+\titlespacing{\section}{0pt}{0.3cm}{0.2cm}
+\renewcommand\labelitemi{$\vcenter{\hbox{\small$\bullet$}}$}
+
+% Configure hyperref
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=black,
+    filecolor=magenta,
+    pdftitle={Rahul V - Resume},
+    pdfauthor={Rahul V}
+}
+
+\newenvironment{highlights}{
+    \begin{itemize}[
+        topsep=0.1cm,
+        parsep=0.1cm,
+        itemsep=3pt,
+        leftmargin=10pt
+    ]
+}{
+    \end{itemize}
+}
+
+\newenvironment{twocolentry}[2][]{
+    \noindent\textbf{#2} \hfill {\small #1}\par
+}{}
+
+% Document
+\begin{document}
+% Header
+\begin{center}
+    \fontsize{20pt}{20pt}\selectfont \textbf{Rahul V}\\
+    \vspace{5pt}
+    \normalsize Bengaluru \textperiodcentered{} \href{mailto:svmrahul15@gmail.com}{svmrahul15@gmail.com} \textperiodcentered{} +91 9741558312\\
+    \href{https://www.linkedin.com/in/rahulv1510}{\faLinkedin{} LinkedIn} \textperiodcentered{} \href{https://github.com/captainRedCodes}{\faGithub{} GitHub}
+\end{center}
+\vspace{5pt}
+
+
+% Education
+\section{Education}
+\begin{twocolentry}[Dec 2021 -- May 2025]{Sir M. Visvesvaraya Institute of Technology — B.E. in Information Science}
+\end{twocolentry}
+\begin{highlights}
+    \item \textbf{GPA:} 8.31 / 10.00
+    \item \textbf{Relevant Coursework:} Data Structures \& Algorithms, Operating Systems, Database Management Systems, Computer Networks, Software Engineering
+\end{highlights}
+
+% Experience
+\section{Experience}
+\begin{twocolentry}[May 2023 -- July 2023]{Full Stack Developer Intern, Varcons Technology — Bengaluru}
+\end{twocolentry}
+\begin{highlights}
+    \item Redesigned responsive user interfaces for multiple businesses, improving user experience and optimizing system performance through data-driven design decisions
+    \item Collaborated with cross-functional teams to understand client requirements and deliver scalable backend solutions under tight deadlines
+    \item Participated in team meetings and contributed to process improvements, enhancing overall project delivery efficiency
+\end{highlights}
+
+% Projects
+\section{Projects}
+\begin{twocolentry}{Cloud-based Data Engineering Pipeline}
+\end{twocolentry}
+\begin{highlights}
+    \item Designed and implemented scalable ETL pipelines in Python to handle structured and unstructured data ingestion from multiple sources
+    \item Developed comprehensive data validation and transformation processes using \textbf{Pandas} and \textbf{NumPy}, ensuring high data quality and consistency
+    \item Automated data cleaning workflows and implemented data validation checks before uploading to \textbf{AWS S3} buckets
+    \item Built secure data storage and retrieval processes via \textbf{Boto3 SDK}, with integrated logging and monitoring for system reliability
+    \item Configured \textbf{AWS S3 + IAM roles} for controlled access and optimized data pipeline performance
+    \item \textbf{Stack:} Python, AWS S3, Pandas, NumPy, Git
+\end{highlights}
+
+\begin{twocolentry}{XenAi: AI-Powered Code Analysis Platform}
+\end{twocolentry}
+\begin{highlights}
+    \item Architected comprehensive data processing pipeline using Langchain tools to analyze code repositories and generate automated documentation across multiple programming languages
+    \item Implemented real-time data processing and transformation for code analysis using Judge0 sandbox environment
+    \item Developed collaborative data sharing system with Firebase Firestore for scalable user data storage and real-time synchronization
+    \item Built RESTful APIs for data extraction and analysis, supporting multiple concurrent users
+    \item \textbf{Stack:} FastAPI, React, Firebase Firestore, Judge0, LangChain, WebSocket
+\end{highlights}
+
+\begin{twocolentry}{Cricket Analytics Data Platform}
+\end{twocolentry}
+\begin{highlights}
+    \item Built end-to-end data analytics platform processing live match data and historical IPL statistics
+    \item Developed data scrapers for extracting and loading cricket data from multiple sources
+    \item Implemented data visualization components using SQL queries with joins, aggregations, and subqueries for performance insights
+    \item \textbf{Stack:} Django, MySQL, MongoDB, React, BeautifulSoup, Python
+\end{highlights}
+
+% Skills
+\section{Technical Skills}
+\begin{highlights}
+    \item \textbf{Programming Languages:} Python, SQL, Java, JavaScript
+    \item \textbf{Data Engineering \& Processing:} Data Cleaning, Data Validation, Pandas, NumPy
+    \item \textbf{Database Management:} MySQL, PostgreSQL, MongoDB, Firebase Firestore, Redis - SQL optimization, joins, aggregations, subqueries
+    \item \textbf{Cloud Platforms:} AWS (S3, EC2, IAM, RDS), Azure Fundamentals, Cloud-based data storage solutions
+    \item \textbf{Development Tools:} React, Django, FastAPI, Docker, Git, GitHub Actions, Postman, RESTful APIs
+    \item \textbf{Additional Tools:} MS Office, Google Workspace
+\end{highlights}
+
+\end{document}
