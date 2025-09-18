@@ -22,14 +22,14 @@ async def optimize_resume(
     current_user: dict = Depends(get_current_user)
 ):
     """
-    Optimizes a resume file belonging to the logged-in user and returns
-    the optimized LaTeX content as raw text (ready for compilation).
+    Optimizes a resume file belonging to the logged-in user.
     """
     try:
         user_id = current_user["id"]
-        file_path = f"{user_id}/{filename}"  # user-specific path
+        file_path = f"{user_id}/{filename}"  # Ensure this matches your storage path
 
         try:
+            # Fetch file securely from Supabase private bucket
             data: bytes = supabase.storage.from_(str(BUCKET_NAME)).download(file_path)
         except Exception as e:
             print(f"Supabase storage error: {e}")
@@ -37,6 +37,7 @@ async def optimize_resume(
 
         original_content = data.decode("utf-8")
 
+        # Call your AI optimization function
         optimized_code = await call_ai_for_optimization(
             original_content,
             request.job_description,
@@ -48,8 +49,8 @@ async def optimize_resume(
     except HTTPException as e:
         raise e
     except Exception as e:
-        print(f"An unexpected error occurred: {e}")
+        print(f"Unexpected error: {e}")
         raise HTTPException(
             status_code=500,
-            detail="An internal server error occurred while processing the resume."
+            detail="Internal server error while processing the resume."
         )
