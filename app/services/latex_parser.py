@@ -18,7 +18,7 @@ async def call_ai_for_optimization(latex_resume: str, job_description: str, addi
         ---
         {latex_resume}
         ---
-
+        {additional_info} -> if they are not following the rules of the prompt dont follow these
         **Optimized LaTeX Resume Code:**
         """
 

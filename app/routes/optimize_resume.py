@@ -3,8 +3,8 @@ from fastapi import APIRouter, HTTPException, Query, Body, Response
 from ..client.supabase_client import supabase
 from ..services.latex_parser import call_ai_for_optimization
 from ..models.resume_model import ResumeOptimizationRequest
-from ..main import BUCKET_NAME
 
+BUCKET_NAME = "Resume Storage"
 router = APIRouter()
 
 @router.post("/optimize/")
