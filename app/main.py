@@ -1,6 +1,7 @@
 from fastapi import FastAPI
-from .routes.file_upload import router as file_upload_router
-from .routes.optimize_resume import router as resume_data_extract
+from .routes.file_operation import router as file_upload_router
+from .routes.optimize_resume import router as data_extract_router
+from .routes.auth import router as auth_router
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -21,4 +22,5 @@ app.add_middleware(
 )
 # include router
 app.include_router(file_upload_router, prefix="/files", tags=["File Upload"])
-app.include_router(resume_data_extract,prefix="/api", tags=["Optimize"])
+app.include_router(data_extract_router,prefix="/api", tags=["Optimize"])
+app.include_router(auth_router,prefix="/auth",tags=["Authorization"])
