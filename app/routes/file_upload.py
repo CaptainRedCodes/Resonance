@@ -1,10 +1,10 @@
-import shutil
+
 from fastapi import APIRouter, UploadFile, File, HTTPException
 from pathlib import Path
-from ..supabase_client import supabase
-router = APIRouter()
+from ..client.supabase_client import supabase
+from ..main import BUCKET_NAME
 
-BUCKET_NAME = "Resume Storage"
+router = APIRouter()
 
 @router.post("/upload")
 async def upload_resume(file: UploadFile = File(...)):
