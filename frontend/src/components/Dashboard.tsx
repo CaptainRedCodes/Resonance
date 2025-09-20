@@ -33,7 +33,6 @@ const Dashboard: React.FC = () => {
                 >
                   View Profile
                 </Link>
-                {/* Add more action buttons for your existing file upload and AI features */}
               </div>
             </div>
           </div>

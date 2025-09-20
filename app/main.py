@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from .routes.file_operation import router as file_upload_router
-from .routes.optimize_resume import router as data_extract_router
+from .routes.resume import router as data_extract_router
 from .routes.auth import router as auth_router
 from fastapi.middleware.cors import CORSMiddleware
 

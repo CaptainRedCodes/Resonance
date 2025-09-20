@@ -15,6 +15,9 @@ import { OptimizePage } from './components/OptimizePage';
 import Layout from './components/Layout';
 import './index.css';
 import Dashboard from './components/Dashboard';
+import { GenerateResumePage } from './components/GenerateResume';
+import { ResumeWizard } from './components/ResumeWizard';
+import { EditResumePage } from './components/EditResumePage';
 
 function App() {
   return (
@@ -43,8 +46,12 @@ function App() {
                 <Route path="files" element={<FilesPage />} />
                 <Route path="optimize" element={<OptimizePage />} />
                 <Route path="optimize/:fileId" element={<OptimizePage />} />
+                <Route path="/edit/:fileId" element={<EditResumePage />} />
                 <Route path="profile" element={<Profile />} />
                 <Route path="dashboard" element={<Dashboard/>}/>
+                <Route path="/preview" element={<GenerateResumePage />} />
+                <Route path="/resume-wizard" element={<ResumeWizard />} />
+
               </Route>
               
               {/* Catch all route - redirect to signin */}

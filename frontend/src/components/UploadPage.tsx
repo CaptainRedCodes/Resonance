@@ -1,4 +1,3 @@
-// components/UploadPage.tsx
 import React, { useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useResume } from '../context/ResumeContext';
@@ -9,27 +8,23 @@ export const UploadPage: React.FC = () => {
   const navigate = useNavigate();
   const [isDragOver, setIsDragOver] = useState(false);
   const [selectedFileName, setSelectedFileName] = useState<string>('');
-
-  // Wrap the upload to know when it's done
+  // Upload handler
   const onFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!event.target.files?.[0]) return;
 
-    const file = event.target.files[0];
-    setSelectedFileName(file.name);
-
-    // Call handleFileUpload and wait for completion
     const success = await handleFileUpload(event);
 
     if (success) {
-      navigate('/files'); // Navigate only after successful upload
+      navigate('/optimize'); // Navigate to optimize page after successful upload
     }
   };
 
+  // Click handler
   const handleUploadClick = () => {
     fileInputRef.current?.click();
   };
 
-  // Handle drag and drop
+  // Drag & drop
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
     setIsDragOver(true);
@@ -43,15 +38,13 @@ export const UploadPage: React.FC = () => {
   const handleDrop = (e: React.DragEvent) => {
     e.preventDefault();
     setIsDragOver(false);
-    
+
     const files = e.dataTransfer.files;
     if (files.length > 0) {
-      const mockEvent = {
-        target: { files }
-      } as React.ChangeEvent<HTMLInputElement>;
+      const mockEvent = { target: { files } } as React.ChangeEvent<HTMLInputElement>;
       onFileUpload(mockEvent);
     }
-  };
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 px-4 py-8">

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ name }} - Resume</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.5; }
+        h1, h2 { color: #333; margin-bottom: 5px; }
+        h1 { font-size: 28px; }
+        h2 { font-size: 22px; border-bottom: 1px solid #ccc; padding-bottom: 3px; margin-top: 25px; }
+        p { margin: 5px 0; }
+        ul { margin: 5px 0 10px 20px; padding: 0; }
+        li { margin-bottom: 3px; }
+    </style>
+</head>
+<body>
+    <h1>{{ name }}</h1>
+    <p>
+        {% if email %}{{ email }}{% endif %}
+        {% if phone %} | {{ phone }}{% endif %}
+        {% if linkedin %} | <a href="{{ linkedin }}">{{ linkedin }}</a>{% endif %}
+        {% if github %} | <a href="{{ github }}">{{ github }}</a>{% endif %}
+    </p>
+
+    {% if education %}
+    <h2>Education</h2>
+    <p>{{ education }}</p>
+    {% if gpa %}
+    <p><strong>GPA:</strong> {{ gpa }}</p>
+    {% endif %}
+    {% if coursework %}
+    <p><strong>Coursework:</strong> {{ coursework }}</p>
+    {% endif %}
+    {% endif %}
+
+    {% if technical_skills %}
+    <h2>Technical Skills</h2>
+    <ul>
+        {% for skill in technical_skills %}
+        <li>{{ skill }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if projects %}
+    <h2>Projects</h2>
+    <ul>
+        {% for project in projects %}
+        <li><strong>{{ project.title }}:</strong> {{ project.description }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if experience %}
+    <h2>Experience</h2>
+    <ul>
+        {% for exp in experience %}
+        <li>
+            <strong>{{ exp.role }}</strong> at {{ exp.company }} {% if exp.duration %}({{ exp.duration }}){% endif %}
+            {% if exp.details %}
+            <ul>
+                {% for detail in exp.details %}
+                <li>{{ detail }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+</html>

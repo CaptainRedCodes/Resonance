@@ -2,3 +2,6 @@ __pycache__
 .venv
 .env
 uploads
+resume.pdf
+resume2.pdf
+test.py

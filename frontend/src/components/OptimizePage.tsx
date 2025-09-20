@@ -1,6 +1,6 @@
 // components/OptimizePage.tsx
 import React, { useEffect } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useResume } from '../context/ResumeContext';
 
 export const OptimizePage: React.FC = () => {
@@ -13,40 +13,21 @@ export const OptimizePage: React.FC = () => {
     optimizedResult,
     uploadedFiles
   } = useResume();
-  
-  const navigate = useNavigate();
-  const { fileId } = useParams();
 
-  // If no selected file but fileId in URL, try to find and select it
-  useEffect(() => {
-    if (!selectedFile && fileId && uploadedFiles.length > 0) {
-      const file = uploadedFiles.find(f => f.name === fileId);
-      if (file) {
-        // setSelectedFile(file); // You might want to add this to context
-      }
-    }
-  }, [selectedFile, fileId, uploadedFiles]);
+  const navigate = useNavigate();
 
   // Redirect if no file selected
   useEffect(() => {
-    if (!selectedFile && !fileId) {
-      navigate('/files');
+    if (!selectedFile && uploadedFiles.length === 0) {
+      navigate('/upload'); // fallback to upload page
     }
-  }, [selectedFile, fileId, navigate]);
+  }, [selectedFile, uploadedFiles, navigate]);
 
   if (!selectedFile) {
     return (
-      <div className="px-4 py-8">
-        <div className="max-w-2xl mx-auto text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">No File Selected</h1>
-          <p className="text-gray-600 mb-6">Please select a resume file to optimize.</p>
-          <Link
-            to="/files"
-            className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg"
-          >
-            Select a File
-          </Link>
-        </div>
+      <div className="flex flex-col items-center justify-center min-h-screen">
+        <h1 className="text-2xl font-bold mb-4">No File Selected</h1>
+        <p className="mb-6">Please upload a resume first.</p>
       </div>
     );
   }
@@ -60,17 +41,15 @@ export const OptimizePage: React.FC = () => {
 
   const downloadOptimizedResume = () => {
     if (!optimizedResult) return;
-    
+
     const blob = new Blob([optimizedResult], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
     a.download = `optimized_${selectedFile.name}`;
-    document.body.appendChild(a);
     a.click();
-    document.body.removeChild(a);
     URL.revokeObjectURL(url);
-  };
+  }
 
   return (
     <div className="px-4 py-8">
@@ -235,7 +214,7 @@ export const OptimizePage: React.FC = () => {
                     
                     <div className="bg-gray-50 rounded-lg p-4">
                       <pre className="text-sm text-gray-800 whitespace-pre-wrap overflow-x-auto max-h-96 overflow-y-auto">
-                        {optimizedResult}
+                         {JSON.stringify(optimizedResult, null, 2)}
                       </pre>
                     </div>
                   </div>
